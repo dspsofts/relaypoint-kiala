@@ -1,5 +1,4 @@
 .idea
-phpunit.xml.dist
 composer.phar
 composer.lock
 vendor
