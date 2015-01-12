@@ -43,16 +43,18 @@ class KialaGateway extends AbstractGateway
     /**
      * Finds the list of relay points.
      *
-     * @param array $fields Search fields
+     * @param array $parameters Search fields
      * @param boolean $active Turn to false if you only want active relay points
      * @return Address[]
      * @throws RelayPointException
      */
-    public function search(array $fields, $active = true)
+    public function search(array $parameters, $active = true)
     {
+        $fields = array_replace($this->getParameters(), $parameters);
+
         $urlParams = array(
-            '#DSPID#' => $fields['dspid'],
-            '#COUNTRY#' => $fields['country'],
+            '#DSPID#' => $this->getDspid(),
+            '#COUNTRY#' => $this->getCountry(),
             '#ZIP#' => $fields['zip'],
         );
         $url = str_replace(array_keys($urlParams), array_values($urlParams), self::URL_SEARCH);
@@ -71,11 +73,9 @@ class KialaGateway extends AbstractGateway
 
         $list = array();
 
-        foreach ($xmlElement->kp as $relayPoint)
-        {
+        foreach ($xmlElement->kp as $relayPoint) {
             $address = $this->parseRelayPoint($relayPoint);
-            if (!$active || ($active && $address->getField('active')))
-            {
+            if (!$active || ($active && $address->getField('active'))) {
                 $list[] = $address;
             }
         }
@@ -90,23 +90,22 @@ class KialaGateway extends AbstractGateway
      * @return Address|null
      * @throws RelayPointException
      */
-    public function detail(array $fields)
+    public function detail(array $parameters)
     {
+        $fields = array_replace($this->getParameters(), $parameters);
+
         $urlParams = array(
-            '#DSPID#' => $fields['dspid'],
-            '#COUNTRY#' => $fields['country'],
+            '#DSPID#' => $this->getDspid(),
+            '#COUNTRY#' => $this->getCountry(),
             '#CODE#' => $fields['code'],
         );
         $url = str_replace(array_keys($urlParams), array_values($urlParams), self::URL_DETAIL);
 
         $xml = file_get_contents($url);
 
-        try
-        {
+        try {
             $xmlElement = new \SimpleXMLElement($xml);
-        }
-        catch (\Exception $e)
-        {
+        } catch (\Exception $e) {
             $message = "Could not find details for Kiala relay point " . $fields['code'] . PHP_EOL;
             $message .= "URL : $url".PHP_EOL;
             $message .= "Response :".PHP_EOL;
@@ -126,8 +125,7 @@ class KialaGateway extends AbstractGateway
     private function parseRelayPoint(\SimpleXMLElement $relayPoint)
     {
         $active = true;
-        if ($relayPoint->status['available'] == 0)
-        {
+        if ($relayPoint->status['available'] == 0) {
             $active = false;
         }
 
@@ -155,21 +153,15 @@ class KialaGateway extends AbstractGateway
         );
         $address = new Address($fields);
 
-        foreach ($relayPoint->openingHours->day as $openingDay)
-        {
+        foreach ($relayPoint->openingHours->day as $openingDay) {
             $day = $days[strval($openingDay['name'])];
 
-            if (!isset($openingDay->timespan))
-            {
+            if (!isset($openingDay->timespan)) {
                 $detail = 'Fermé';
-            }
-            else
-            {
+            } else {
                 $detail = '';
-                foreach ($openingDay->timespan as $timeSpan)
-                {
-                    if ($detail != '')
-                    {
+                foreach ($openingDay->timespan as $timeSpan) {
+                    if ($detail != '') {
                         $detail .= ' ';
                     }
                     $detail .= strval($timeSpan->start) . ' - ' . strval($timeSpan->end);
