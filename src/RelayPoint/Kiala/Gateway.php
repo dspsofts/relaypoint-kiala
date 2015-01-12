@@ -13,7 +13,7 @@ use RelayPoint\Core\AbstractGateway;
 use RelayPoint\Core\Address;
 use RelayPoint\Core\RelayPointException;
 
-class KialaGateway extends AbstractGateway
+class Gateway extends AbstractGateway
 {
     const URL_SEARCH = 'http://locateandselect.kiala.com/kplist?dspid=#DSPID#&country=#COUNTRY#&zip=#ZIP#';
     const URL_DETAIL = 'http://locateandselect.kiala.com/kplist?dspid=#DSPID#&country=#COUNTRY#&shortID=#CODE#';
