@@ -86,7 +86,7 @@ class Gateway extends AbstractGateway
     /**
      * Returns the details of one Kiala relay point.
      *
-     * @param array $fields Search fields
+     * @param array $parameters Search fields
      * @return Address|null
      * @throws RelayPointException
      */
