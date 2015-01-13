@@ -5,7 +5,9 @@ Kiala Relay point search
 
 [![Latest Version](https://img.shields.io/github/release/pfeyssaguet/relaypoint-kiala.svg?style=flat-square)](https://github.com/pfeyssaguet/relaypoint-kiala/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](LICENSE.md)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/pfeyssaguet/relaypoint-kiala/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/pfeyssaguet/relaypoint-kiala/?branch=master)
+[![Build Status](https://img.shields.io/travis/pfeyssaguet/relaypoint-kiala/master.svg?style=flat-square)](https://travis-ci.org/pfeyssaguet/relaypoint-kiala)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/pfeyssaguet/relaypoint-kiala.svg?style=flat-square)](https://scrutinizer-ci.com/g/pfeyssaguet/relaypoint-kiala/code-structure)
+[![Quality Score](https://img.shields.io/scrutinizer/g/pfeyssaguet/relaypoint-kiala.svg?style=flat-square)](https://scrutinizer-ci.com/g/pfeyssaguet/relaypoint-kiala)
 
 
 ## Install
