@@ -10,9 +10,9 @@
         }
     ],
 	"autoload": {
-		"psr-0": {
-			"RelayPoint\\Kiala" : "src/",
-			"RelayPoint\\Kiala\\Tests" : "tests/"
+		"psr-4": {
+			"RelayPoint\\Kiala\\" : "src/",
+			"RelayPoint\\Kiala\\Tests\\" : "tests/"
 		}
 	},
 	"repositories": [
