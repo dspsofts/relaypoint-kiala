@@ -9,10 +9,23 @@ Kiala Relay point search
 [![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/pfeyssaguet/relaypoint-kiala.svg?style=flat-square)](https://scrutinizer-ci.com/g/pfeyssaguet/relaypoint-kiala/code-structure)
 [![Quality Score](https://img.shields.io/scrutinizer/g/pfeyssaguet/relaypoint-kiala.svg?style=flat-square)](https://scrutinizer-ci.com/g/pfeyssaguet/relaypoint-kiala)
 
+## Installation
 
-## Install
+Install via [Composer](http://getcomposer.org/). To install, simply add it
+to your `composer.json` file:
 
-For now you have to clone this repository. Install via Composer might come later :)
+```json
+{
+    "require": {
+        "relaypoint/kiala": "~1.0"
+    }
+}
+```
+
+And run composer to update your dependencies:
+
+    $ curl -s http://getcomposer.org/installer | php
+    $ php composer.phar update
 
 ## Usage
 
